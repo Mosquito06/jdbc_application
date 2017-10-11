@@ -5,6 +5,16 @@ public class Department {
 	private String deptName;
 	private int floor;
 
+	public Department(int deptNo) {
+		this.deptNo = deptNo;
+	}
+
+	public Department(int deptNo, String deptName, int floor) {
+		this.deptNo = deptNo;
+		this.deptName = deptName;
+		this.floor = floor;
+	}
+
 	public Department() {
 
 	}
@@ -37,5 +47,5 @@ public class Department {
 	public String toString() {
 		return String.format("Department [deptNo=%s, deptName=%s, floor=%s]", deptNo, deptName, floor);
 	}
-	
+
 }
