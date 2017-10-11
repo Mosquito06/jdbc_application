@@ -31,7 +31,7 @@ public class DepartmentDao implements SqlDao<Department> {
 			pstmt.setInt(1, item.getDeptNo());
 			pstmt.setString(2, item.getDeptName());
 			pstmt.setInt(3, item.getFloor());
-
+			pstmt.executeUpdate();
 			// 확인 작업은 필수
 			// System.out.println(pstmt);
 		}

@@ -23,6 +23,10 @@ public class Department {
 		return deptNo;
 	}
 
+	public Department(String deptName) {
+		this.deptName = deptName;
+	}
+
 	public void setDeptNo(int deptNo) {
 		this.deptNo = deptNo;
 	}
