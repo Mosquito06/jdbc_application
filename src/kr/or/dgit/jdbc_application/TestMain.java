@@ -17,43 +17,60 @@ import kr.or.dgit.jdbc_application.jdbc.jdbcUtil;
 
 public class TestMain {
 
+	
+
 	public static void main(String[] args) {
 		// testDBCon();
 
 		// testDepartmentDao();
 
-		// testTitleDao();
+		 testTitleDao();
 		
-		Employee employee = null;
-		employee = new Employee(1007, "아이유", new Title(6), new Employee(1006), 1000000, new Department(1));
-			
+		// testEmployeeDao();
+					
+	}
+
+	private static void testEmployeeDao() {
+		Employee employee = new Employee(1007, "아이유", new Title(5), new Employee(1005), 1000000, new Department(5));
+		
+		testEmployeeInsert(employee);
+		testEmployeeByAll();
+		System.out.println("===============================");
+		
+		employee.setEmpName("이효리");
+		testEmployeeUpdate(employee);
+		testEmployeeByNo(employee);
+		System.out.println("===============================");
 		
 		
-		/*try {
+		testEmployeeDelete(employee);
+		testEmployeeByAll();
+	}
+
+	private static void testEmployeeUpdate(Employee employee) {
+		try {
+				EmployeeDao.getInstance().updateItem(employee);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
+
+	private static void testEmployeeInsert(Employee employee) {
+		try {
 			EmployeeDao.getInstance().insertItem(employee);
-			JOptionPane.showMessageDialog(null, "직위가 추가되었습니다");
+			JOptionPane.showMessageDialog(null, "사원이 추가되었습니다");
 		} catch (SQLException e) {
 			System.err.printf("%s - %s%n", e.getErrorCode(), e.getMessage());
 			if (e.getErrorCode() == 1062) {
-				JOptionPane.showMessageDialog(null, "직위번호가 중복");
+				JOptionPane.showMessageDialog(null, "사원번호가 중복");
 			}
-		}*/
-		
-		testEmployeeByAll();
-		
-		
-		// testEmployeeDelete(employee);
-		
-		// testEmployeeByNo(employee);
-		
-		// testEmployeeByAll();
-		
+		}
 	}
 
 	private static void testEmployeeDelete(Employee employee) {
 		try {
 			EmployeeDao.getInstance().deleteItem(employee);
-			JOptionPane.showMessageDialog(null, "직위가 삭제되었습니다");
+			JOptionPane.showMessageDialog(null, "사원이 삭제되었습니다");
 		} catch (SQLException e) {
 			System.err.printf("%s - %s%n", e.getErrorCode(), e.getMessage());
 			JOptionPane.showMessageDialog(null, "삭제 실패");
@@ -87,13 +104,16 @@ public class TestMain {
 		
 		testTitleInsert(title);
 		testTitleAll();
+		System.out.println("===============================");
 		
 		title.setTitleName("단기 아르바이트");
 		testTitleUpdate(title);
 		testTitleByNo(title);
+		System.out.println("===============================");
 		
 		testTitleDelete(title);
 		testTitleAll();
+		
 	}
 
 	private static void testTitleDelete(Title title) {

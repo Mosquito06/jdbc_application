@@ -21,10 +21,6 @@ public class Employee {
 		this.dno = dno;
 	}
 
-	public Employee(String empName) {
-		this.empName = empName;
-	}
-
 	public Employee(int empNo) {
 		this.empNo = empNo;
 	}
@@ -79,8 +75,8 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return String.format("%s, %s, %s, %s, %s, %s", empNo, empName, title.getTitleName(), manager.getEmpName(),
-				salary, dno.getDeptName());
+		return String.format("%s, %s, %s, %s, %s, %s", empNo, empName, title.getTitle(), manager.getEmpNo(),
+				salary, dno.getDeptNo());
 	}
 
 }
