@@ -37,5 +37,5 @@ public class Department {
 	public String toString() {
 		return String.format("Department [deptNo=%s, deptName=%s, floor=%s]", deptNo, deptName, floor);
 	}
-
+	
 }
