@@ -17,10 +17,6 @@ public class Title {
 		this.title = title;
 	}
 
-	public Title(String titleName) {
-		this.titleName = titleName;
-	}
-
 	public int getTitle() {
 		return title;
 	}

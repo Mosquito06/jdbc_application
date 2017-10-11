@@ -31,12 +31,12 @@ public class EmployeeDao implements SqlDao<Employee> {
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, item.getEmpNo());
 			pstmt.setString(2, item.getEmpName());
-			pstmt.setString(3, item.getTitle().getTitleName());
-			pstmt.setString(4, item.getManager().getEmpName());
+			pstmt.setInt(3, item.getTitle().getTitle());
+			pstmt.setInt(4, item.getManager().getEmpNo());
 			pstmt.setInt(5, item.getSalary());
 			pstmt.setInt(6, item.getDno().getDeptNo());
 			pstmt.executeUpdate();
-			
+
 		}
 
 	}
@@ -56,17 +56,16 @@ public class EmployeeDao implements SqlDao<Employee> {
 
 	@Override
 	public void updateItem(Employee item) throws SQLException {
-		String sql = "update employee set empname = ?, title = ?, manager = ?, salary = ?, dno = ? from employee where empno =?";
+		String sql = "update employee set empname = ?, title = ?, manager = ?, salary = ?, dno = ? where empno =?";
 		Connection con = DBCon.getInstance().getConnection();
 
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, item.getEmpName());
-			pstmt.setString(2, item.getTitle().getTitleName());
-			pstmt.setString(3, item.getManager().getEmpName());
+			pstmt.setInt(2, item.getTitle().getTitle());
+			pstmt.setInt(3, item.getManager().getEmpNo());
 			pstmt.setInt(4, item.getSalary());
 			pstmt.setInt(5, item.getDno().getDeptNo());
 			pstmt.setInt(6, item.getEmpNo());
-			
 			pstmt.executeUpdate();
 
 		}
@@ -111,10 +110,10 @@ public class EmployeeDao implements SqlDao<Employee> {
 	private Employee getEmployee(ResultSet rs) throws SQLException {
 		int empNo = rs.getInt(1);
 		String empName = rs.getString(2);
-		Title title = new Title(rs.getString(3));
-		Employee manager = new Employee(rs.getString(4));
+		Title title = new Title(rs.getInt(3));
+		Employee manager = new Employee(rs.getInt(4));
 		int salary = rs.getInt(5);
-		Department dno = new Department(rs.getString(6));
+		Department dno = new Department(rs.getInt(6));
 		return new Employee(empNo, empName, title, manager, salary, dno);
 	}
 
