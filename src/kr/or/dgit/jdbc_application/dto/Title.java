@@ -1,28 +1,28 @@
 package kr.or.dgit.jdbc_application.dto;
 
 public class Title {
-	private int title;
+	private int titleNo;
 	private String titleName;
 
 	public Title() {
-
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Title(int titleNo) {
+		this.titleNo = titleNo;
 	}
 
-	public Title(int title, String titleName) {
-		this.title = title;
+	public Title(int titleNo, String titleName) {
+		this.titleNo = titleNo;
 		this.titleName = titleName;
 	}
 
-	public Title(int title) {
-		this.title = title;
+	public int getTitleNo() {
+		return titleNo;
 	}
 
-	public int getTitle() {
-		return title;
-	}
-
-	public void setTitle(int title) {
-		this.title = title;
+	public void setTitleNo(int titleNo) {
+		this.titleNo = titleNo;
 	}
 
 	public String getTitleName() {
@@ -35,7 +35,7 @@ public class Title {
 
 	@Override
 	public String toString() {
-		return String.format("%s, %s", title, titleName);
+		return String.format("%s(%s)", titleName, titleNo);
 	}
 
 }

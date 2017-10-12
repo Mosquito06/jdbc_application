@@ -1,58 +1,225 @@
-package kr.or.dgit.jdbc_application;
+/*package kr.or.dgit.jdbc_application_내작업;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
-import kr.or.dgit.jdbc_application.dao.DepartmentDao;
-import kr.or.dgit.jdbc_application.dao.EmployeeDao;
-import kr.or.dgit.jdbc_application.dao.TitleDao;
+import kr.or.dgit.jdbc_application.dao_내작업.DepartmentDao;
 import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.dto.Employee;
 import kr.or.dgit.jdbc_application.dto.Title;
 import kr.or.dgit.jdbc_application.jdbc.DBCon;
 import kr.or.dgit.jdbc_application.jdbc.jdbcUtil;
+import kr.or.dgit.jdbc_application_내작업.dao_내작업.EmployeeDao;
+import kr.or.dgit.jdbc_application_내작업.dao_내작업.TitleDao;
+import kr.or.dgit.jdbc_application_내작업.dao_내작업.common.ComboBoxComponent;
+import kr.or.dgit.jdbc_application_내작업.dao_내작업.common.SpinnerComponent;
+import kr.or.dgit.jdbc_application_내작업.dao_내작업.common.TextFieldComponent;
+import kr.or.dgit.jdbc_application_내작업.dao_내작업.content.DepartmentContent;
+import kr.or.dgit.jdbc_application_내작업.dao_내작업.content.EmployeeContent;
+import kr.or.dgit.jdbc_application_내작업.dao_내작업.content.TitleContent;
 
 public class TestMain {
 
-	
-
 	public static void main(String[] args) {
 		// testDBCon();
-
 		// testDepartmentDao();
-
-		 testTitleDao();
-		
+		// testTitleDao();
 		// testEmployeeDao();
-					
+
+		// testTestFieldComponent();
+		// testDepartmentContent();
+
+		// testTItleContent();
+		
+		// testComboBoxComponentTest();
+		
+		testEmployeeContent();
+		
+		SpinnerComponent tfc = new SpinnerComponent("테스트");
+		tfc.setSpinnerValue(1000000);
+
+		JButton btn = new JButton("테스트");
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tfc.isEmptyCheck();
+					JOptionPane.showMessageDialog(null, tfc.getSpinnerValue());
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+		testContent(tfc, btn);
+		
+	}
+
+	private static void testEmployeeContent() {
+		EmployeeContent tfc = new EmployeeContent();
+		//tfc.setContent(new Title(1, "아르바이트"));
+
+		JButton btn = new JButton("테스트");
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tfc.isEmptyCheck();
+					JOptionPane.showMessageDialog(null, tfc.getContent());
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+
+				}
+
+			}
+		});
+
+		testContent(tfc, btn);
+	}
+
+	private static void testComboBoxComponentTest() {
+		ComboBoxComponent<Department> tfc = new ComboBoxComponent("테스트");
+		DefaultComboBoxModel<Department> value = new DefaultComboBoxModel<>();
+		value.addElement(new Department(1, "기획", 3));
+		value.addElement(new Department(2, "마케팅", 3));
+		value.addElement(new Department(3, "생산", 3));
+		
+		tfc.setComboValue(value);
+
+		JButton btn = new JButton("테스트");
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tfc.isEmptyCheck();
+					JOptionPane.showMessageDialog(null, tfc.getComboValue());
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+		testContent(tfc, btn);
+	}
+
+	private static void testTItleContent() {
+		TitleContent tfc = new TitleContent();
+		tfc.setContent(new Title(1, "아르바이트"));
+
+		JButton btn = new JButton("테스트");
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tfc.isEmptyCheck();
+					JOptionPane.showMessageDialog(null, tfc.getContent());
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+
+				}
+
+			}
+		});
+
+		testContent(tfc, btn);
+	}
+
+	private static void testDepartmentContent() {
+		DepartmentContent tfc = new DepartmentContent();
+		tfc.setContent(new Department(1, "개발", 10));
+
+		JButton btn = new JButton("테스트");
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tfc.isEmptyCheck();
+					JOptionPane.showMessageDialog(null, tfc.getContent());
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+
+				}
+
+			}
+		});
+
+		testContent(tfc, btn);
+	}
+
+	private static void testTestFieldComponent() {
+		TextFieldComponent tfc = new TextFieldComponent("테스트");
+		tfc.SetTextValue("재진");
+
+		JButton btn = new JButton("테스트");
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tfc.isEmptyCheck();
+					JOptionPane.showMessageDialog(null, tfc.getTextValue());
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+		testContent(tfc, btn);
+	}
+
+	private static void testContent(JPanel panel, JButton btn) {
+		JFrame jf = new JFrame();
+		jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		jf.setBounds(10, 10, 500, 550);
+		jf.add(panel);
+		jf.add(btn, BorderLayout.SOUTH);
+		jf.setVisible(true);
 	}
 
 	private static void testEmployeeDao() {
 		Employee employee = new Employee(1007, "아이유", new Title(5), new Employee(1005), 1000000, new Department(5));
-		
+
 		testEmployeeInsert(employee);
 		testEmployeeByAll();
 		System.out.println("===============================");
-		
+
 		employee.setEmpName("이효리");
 		testEmployeeUpdate(employee);
 		testEmployeeByNo(employee);
 		System.out.println("===============================");
-		
-		
+
 		testEmployeeDelete(employee);
 		testEmployeeByAll();
 	}
 
 	private static void testEmployeeUpdate(Employee employee) {
 		try {
-				EmployeeDao.getInstance().updateItem(employee);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			EmployeeDao.getInstance().updateItem(employee);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void testEmployeeInsert(Employee employee) {
@@ -101,19 +268,19 @@ public class TestMain {
 
 	private static void testTitleDao() {
 		Title title = new Title(6, "아르바이트");
-		
+
 		testTitleInsert(title);
 		testTitleAll();
 		System.out.println("===============================");
-		
+
 		title.setTitleName("단기 아르바이트");
 		testTitleUpdate(title);
 		testTitleByNo(title);
 		System.out.println("===============================");
-		
+
 		testTitleDelete(title);
 		testTitleAll();
-		
+
 	}
 
 	private static void testTitleDelete(Title title) {
@@ -247,3 +414,4 @@ public class TestMain {
 	}
 
 }
+*/

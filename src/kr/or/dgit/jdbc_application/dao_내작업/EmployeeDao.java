@@ -1,5 +1,6 @@
-package kr.or.dgit.jdbc_application.dao;
+/*package kr.or.dgit.jdbc_application.dao_³»ÀÛ¾÷;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,52 +20,65 @@ public class EmployeeDao implements SqlDao<Employee> {
 	}
 
 	private EmployeeDao() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
 	public void insertItem(Employee item) throws SQLException {
-		String sql = "INSERT INTO employee(empno, empname, title, manager, salary, dno) VALUES(?, ?, ?, ?, ?, ?)";
-		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);){
+		String sql = "insert into employee values(?,?,?,?,?,?)";
+		Connection con = DBCon.getInstance().getConnection();
+
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, item.getEmpNo());
 			pstmt.setString(2, item.getEmpName());
-			pstmt.setInt(3, item.getTitle().getTitleNo());
+			pstmt.setInt(3, item.getTitle().getTitle());
 			pstmt.setInt(4, item.getManager().getEmpNo());
 			pstmt.setInt(5, item.getSalary());
 			pstmt.setInt(6, item.getDno().getDeptNo());
 			pstmt.executeUpdate();
+
 		}
+
 	}
 
 	@Override
 	public void deleteItem(Employee item) throws SQLException {
 		String sql = "delete from employee where empno = ?";
-		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);){
+		Connection con = DBCon.getInstance().getConnection();
+
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, item.getEmpNo());
 			pstmt.executeUpdate();
+
 		}
+
 	}
 
 	@Override
 	public void updateItem(Employee item) throws SQLException {
-		String sql = "update employee set empname=?, title=?, manager=?, salary=?, dno=? where empno=?";
-		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);){
+		String sql = "update employee set empname = ?, title = ?, manager = ?, salary = ?, dno = ? where empno =?";
+		Connection con = DBCon.getInstance().getConnection();
+
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, item.getEmpName());
-			pstmt.setInt(2, item.getTitle().getTitleNo());
+			pstmt.setInt(2, item.getTitle().getTitle());
 			pstmt.setInt(3, item.getManager().getEmpNo());
 			pstmt.setInt(4, item.getSalary());
 			pstmt.setInt(5, item.getDno().getDeptNo());
 			pstmt.setInt(6, item.getEmpNo());
 			pstmt.executeUpdate();
+
 		}
+
 	}
 
 	@Override
 	public Employee selectItemByNo(Employee item) throws SQLException {
-		String sql = "select empno, empname, title, manager, salary, dno from employee where empno = ?";
+		String sql = "select empno, empname, title, manager, salary, dno from employee where empno =?";
+		Connection con = DBCon.getInstance().getConnection();
 		Employee employee = null;
 
-		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);) {
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, item.getEmpNo());
 
 			try (ResultSet rs = pstmt.executeQuery();) {
@@ -72,33 +86,36 @@ public class EmployeeDao implements SqlDao<Employee> {
 					employee = getEmployee(rs);
 				}
 			}
-		}
-		return employee;
-	}
 
-	private Employee getEmployee(ResultSet rs) throws SQLException {
-		int empNo = rs.getInt("empno");
-		String empName = rs.getString("empname");
-		Title title = new Title(rs.getInt("title"));
-		Employee manager = new Employee(rs.getInt("manager"));
-		int salary = rs.getInt("salary");
-		Department dno = new Department(rs.getInt("dno"));
-		return new Employee(empNo, empName, title, manager, salary, dno);
-		
+		}
+
+		return employee;
 	}
 
 	@Override
 	public List<Employee> selectItemByAll() throws SQLException {
 		String sql = "select empno, empname, title, manager, salary, dno from employee";
+		Connection con = DBCon.getInstance().getConnection();
 		List<Employee> lists = new ArrayList<>();
-		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery();) {
+
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery();) {
 			while (rs.next()) {
 				lists.add(getEmployee(rs));
-				
 			}
 		}
+
 		return lists;
 	}
 
+	private Employee getEmployee(ResultSet rs) throws SQLException {
+		int empNo = rs.getInt(1);
+		String empName = rs.getString(2);
+		Title title = new Title(rs.getInt(3));
+		Employee manager = new Employee(rs.getInt(4));
+		int salary = rs.getInt(5);
+		Department dno = new Department(rs.getInt(6));
+		return new Employee(empNo, empName, title, manager, salary, dno);
+	}
+
 }
+*/
