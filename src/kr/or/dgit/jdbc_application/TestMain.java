@@ -1,4 +1,4 @@
-package kr.or.dgit.jdbc_application_teacher;
+package kr.or.dgit.jdbc_application;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
