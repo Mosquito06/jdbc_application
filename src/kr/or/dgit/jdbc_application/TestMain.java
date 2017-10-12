@@ -24,9 +24,9 @@ public class TestMain {
 
 		// testDepartmentDao();
 
-		 testTitleDao();
+		// testTitleDao();
 		
-		// testEmployeeDao();
+		 testEmployeeDao();
 					
 	}
 
