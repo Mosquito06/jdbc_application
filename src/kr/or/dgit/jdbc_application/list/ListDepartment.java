@@ -66,8 +66,6 @@ public class ListDepartment extends AbstractList {
 	}
 
 	private void setAlign(int align, int... idx) {
-		// 0번 컬럼을 정렬(left, right, center)
-
 		// 가운데 정렬을 위한 명령문
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
 		dtcr.setHorizontalAlignment(align);
