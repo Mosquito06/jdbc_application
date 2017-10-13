@@ -6,7 +6,7 @@ public class Department {
 	private int floor;
 
 	public Department() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Department(int deptNo) {
