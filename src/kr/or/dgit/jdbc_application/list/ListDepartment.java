@@ -96,7 +96,7 @@ public class ListDepartment extends AbstractList {
 		return new String[] { "부서번호", "부서명", "위치" };
 	}
 
-
+	// 추상 클래스의 추상 메소드 구현
 	@Override
 	public Object getSelectedItem() {
 		int selectedIndex = table.getSelectedRow(); 
