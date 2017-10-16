@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.jdbc_application.content.DepartmentContent;
 import kr.or.dgit.jdbc_application.list.AbstractList;
 import kr.or.dgit.jdbc_application.list.ListDepartment;
+import kr.or.dgit.jdbc_application.service.DepartmentService;
 
 public class ViewDepartment extends AbstractView {
 
@@ -19,7 +20,8 @@ public class ViewDepartment extends AbstractView {
 	
 	@Override
 	protected AbstractList createList() {
-		ListDepartment pList = new ListDepartment();
+		DepartmentService ds = new DepartmentService();
+		ListDepartment pList = new ListDepartment(ds);
 		return pList;
 	}
 

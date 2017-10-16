@@ -44,6 +44,11 @@ public class Department {
 	}
 
 	
+	public Object[] toArray(){
+		return new Object[]{deptNo, deptName, floor};
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,22 +1,19 @@
 package kr.or.dgit.jdbc_application.list;
 
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.util.Vector;
+import java.util.List;
 
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 import kr.or.dgit.jdbc_application.dto.Department;
+import kr.or.dgit.jdbc_application.service.DepartmentService;
 
 public class ListDepartment extends AbstractList {
-
+	private DepartmentService service;
 	
+	public ListDepartment(DepartmentService service) {
+		this.service = service;
+	}
+
 	// 추상 클래스에서 정의하고 있기 때문에 주석 처리
 	/*private JTable table;
 
@@ -84,8 +81,12 @@ public class ListDepartment extends AbstractList {
 	// 추상 클래스의 추상 메소드 구현
 	@Override
 	protected Object[][] getData() {
-		Object[][] datas = { { 1, "개발", 10 }, { 2, "인사", 20 }, { 3, "마케팅", 30 } };
-
+		List<Department> lists = service.selectDepartmentByAll();
+		Object[][] datas = new Object[lists.size()][];
+		for(int i = 0; i < lists.size(); i++){
+			datas[i] = lists.get(i).toArray();
+		}
+		
 		return datas;
 	}
 	
