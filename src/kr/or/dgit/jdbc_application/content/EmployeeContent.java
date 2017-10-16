@@ -51,30 +51,26 @@ public class EmployeeContent extends JPanel {
 		add(pTitle);
 		
 		setDepartModel();
-		setTitleMOdel();
+		setTitleModel();
 		setManagerModel();
 	}
 
 	private void setManagerModel() {
-		Vector<Employee> lists = new Vector<>();
-		lists.add(new Employee(1, "서현진",new Title(1, "사장"),new Employee(1), 100000, new Department(1)));
-		lists.add(new Employee(1));
-		lists.add(new Employee(1));
-		pManager.setComboBoxModel(lists);				
+		List<Employee> lists = service.selectEmployeeByAll();
+		Vector<Employee> manager = new Vector<>(lists);
+		pManager.setComboBoxModel(manager);				
 	}
 
-	private void setTitleMOdel() {
+	private void setTitleModel() {
 		List<Title> lists = service.selectTitleByAll();
 		Vector<Title> titles = new Vector<>(lists);
 		pTitle.setComboBoxModel(titles);		
 	}
 
 	public void setDepartModel(){
-		Vector<Department> lists = new Vector<>();
-		lists.add(new Department(1, "개발1", 11));
-		lists.add(new Department(2, "개발2", 12));
-		lists.add(new Department(3, "개발3", 13));
-		pDno.setComboBoxModel(lists);
+		List<Department> lists = service.selectDepartmentByAll();
+		Vector<Department> depart = new Vector<>(lists);
+		pDno.setComboBoxModel(depart);
 	}
 	public Employee getContent(){
 		int empNo = Integer.parseInt(pEmpNo.getTextValue());

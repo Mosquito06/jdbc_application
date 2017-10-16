@@ -83,6 +83,15 @@ public class EmployeeService {
 		return null;
 	}
 	
+	public List<Title> selectTitleByAll(){
+		try {
+			return titleDao.selectItemByAll();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public Department selecteDepartmentByNo(Department dept){
 		try {
 			return deptDao.selectItemByNo(dept);
@@ -93,14 +102,14 @@ public class EmployeeService {
 		return null;
 	}
 	
-	public List<Title> selectTitleByAll(){
+	public List<Department> selectDepartmentByAll(){
 		try {
-			return titleDao.selectItemByAll();
+			return deptDao.selectItemByAll();
 		} catch (SQLException e) {
-			e.printStackTrace();
+		  e.printStackTrace();
 		}
-		return null;
-	}
+	return null;
+}
 }
 	
 
