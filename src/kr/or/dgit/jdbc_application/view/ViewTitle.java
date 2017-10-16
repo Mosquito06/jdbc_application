@@ -8,15 +8,18 @@ import kr.or.dgit.jdbc_application.list.ListTitle;
 import kr.or.dgit.jdbc_application.service.TitleService;
 
 public class ViewTitle extends AbstractView {
-
+	private TitleService service;
+	
+	
 	public ViewTitle(String title) {
 		super(title);
 	}
 	
 	@Override
 	protected AbstractList createList() {
-		TitleService ts = new TitleService();
-		ListTitle pList = new ListTitle(ts);
+		
+		ListTitle pList = new ListTitle(service);
+		pList.loadData();
 		return pList;
 	}
 
@@ -24,6 +27,12 @@ public class ViewTitle extends AbstractView {
 	protected JPanel createContent() {
 		TitleContent pContent = new TitleContent();
 		return pContent;
+	}
+
+	@Override
+	protected void createService() {
+		service = new TitleService();
+		
 	}
 
 }

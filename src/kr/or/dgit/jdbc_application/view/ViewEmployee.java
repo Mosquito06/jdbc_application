@@ -8,22 +8,30 @@ import kr.or.dgit.jdbc_application.list.ListEmployee;
 import kr.or.dgit.jdbc_application.service.EmployeeService;
 
 public class ViewEmployee extends AbstractView {
-
+	private EmployeeService service;
+	
 	public ViewEmployee(String title) {
 		super(title);
+		
 	}
 	
 	@Override
 	protected AbstractList createList() {
-		EmployeeService es = new EmployeeService();
-		ListEmployee pList = new ListEmployee(es);
+		ListEmployee pList = new ListEmployee(service);
+		pList.loadData();
 		return pList;
 	}
 
 	@Override
 	protected JPanel createContent() {
-		EmployeeContent pContent = new EmployeeContent();
+		EmployeeContent pContent = new EmployeeContent(service);
 		return pContent;
+	}
+
+	@Override
+	protected void createService() {
+		service = new EmployeeService();
+		
 	}
 
 }

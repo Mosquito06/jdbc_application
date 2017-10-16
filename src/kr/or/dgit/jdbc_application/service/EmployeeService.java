@@ -92,6 +92,15 @@ public class EmployeeService {
 		
 		return null;
 	}
+	
+	public List<Title> selectTitleByAll(){
+		try {
+			return titleDao.selectItemByAll();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
 	
 

@@ -13,15 +13,16 @@ import kr.or.dgit.jdbc_application.list.ListDepartment;
 import kr.or.dgit.jdbc_application.service.DepartmentService;
 
 public class ViewDepartment extends AbstractView {
-
+	private DepartmentService service;
+	
 	public ViewDepartment(String title) {
 		super(title);
 	}
 	
 	@Override
 	protected AbstractList createList() {
-		DepartmentService ds = new DepartmentService();
-		ListDepartment pList = new ListDepartment(ds);
+		ListDepartment pList = new ListDepartment(service);
+		pList.loadData();
 		return pList;
 	}
 
@@ -29,6 +30,12 @@ public class ViewDepartment extends AbstractView {
 	protected JPanel createContent() {
 		DepartmentContent pContent = new DepartmentContent();
 		return pContent;
+	}
+
+	@Override
+	protected void createService() {
+		service = new DepartmentService();
+		
 	}
 
 }
