@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 import kr.or.dgit.jdbc_application.list.AbstractList;
-import kr.or.dgit.jdbc_application.list.ListDepartment;
 import kr.or.dgit.jdbc_application.list.ListEmployee;
-import kr.or.dgit.jdbc_application.service.DepartmentService;
+import kr.or.dgit.jdbc_application.service.EmployeeService;
+import kr.or.dgit.jdbc_application.service.TitleService;
 
 public class TestListMain {
 
@@ -22,7 +22,7 @@ public class TestListMain {
 		jf.setBounds(10, 10, 400, 450);
 		
 		
-		AbstractList ld = new ListDepartment(new DepartmentService());
+		AbstractList ld = new ListEmployee(new EmployeeService());
 		ld.loadData();
 		jf.add(ld);
 		

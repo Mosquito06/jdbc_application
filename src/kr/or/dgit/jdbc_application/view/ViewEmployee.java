@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import kr.or.dgit.jdbc_application.content.EmployeeContent;
 import kr.or.dgit.jdbc_application.list.AbstractList;
 import kr.or.dgit.jdbc_application.list.ListEmployee;
+import kr.or.dgit.jdbc_application.service.EmployeeService;
 
 public class ViewEmployee extends AbstractView {
 
@@ -14,7 +15,8 @@ public class ViewEmployee extends AbstractView {
 	
 	@Override
 	protected AbstractList createList() {
-		ListEmployee pList = new ListEmployee();
+		EmployeeService es = new EmployeeService();
+		ListEmployee pList = new ListEmployee(es);
 		return pList;
 	}
 

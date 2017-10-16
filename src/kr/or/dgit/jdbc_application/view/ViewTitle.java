@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import kr.or.dgit.jdbc_application.content.TitleContent;
 import kr.or.dgit.jdbc_application.list.AbstractList;
 import kr.or.dgit.jdbc_application.list.ListTitle;
+import kr.or.dgit.jdbc_application.service.TitleService;
 
 public class ViewTitle extends AbstractView {
 
@@ -14,7 +15,8 @@ public class ViewTitle extends AbstractView {
 	
 	@Override
 	protected AbstractList createList() {
-		ListTitle pList = new ListTitle();
+		TitleService ts = new TitleService();
+		ListTitle pList = new ListTitle(ts);
 		return pList;
 	}
 

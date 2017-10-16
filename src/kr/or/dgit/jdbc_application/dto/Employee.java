@@ -78,4 +78,8 @@ public class Employee {
 		return String.format("%s(%s)", empName, empNo);
 	}
 
+	public Object[] toArray() {
+		return new Object[]{empNo, empName, title, manager, salary, dno};
+	}
+	
 }
