@@ -13,11 +13,11 @@ public class TestView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AbstractView frame1 = new ViewDepartment("何辑包府");
+					/*AbstractView frame1 = new ViewDepartment("何辑包府");
 					frame1.setVisible(true);
 								
 					AbstractView frame2 = new ViewTitle("流氓包府");
-					frame2.setVisible(true);
+					frame2.setVisible(true);*/
 					
 					AbstractView frame3 = new ViewEmployee("荤盔包府");
 					frame3.setVisible(true);

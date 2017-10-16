@@ -1,10 +1,14 @@
 package kr.or.dgit.jdbc_application.content;
 
 import java.awt.GridLayout;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JPanel;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 
 import kr.or.dgit.jdbc_application.common.ComboComponent;
 import kr.or.dgit.jdbc_application.common.SpinnerComponent;
@@ -39,7 +43,7 @@ public class EmployeeContent extends JPanel {
 		
 		pDno = new ComboComponent<>("부서");
 		add(pDno);
-		
+				
 		pManager = new ComboComponent<>("관리자");
 		add(pManager);
 		
@@ -58,7 +62,7 @@ public class EmployeeContent extends JPanel {
 	private void setManagerModel() {
 		List<Employee> lists = service.selectEmployeeByAll();
 		Vector<Employee> manager = new Vector<>(lists);
-		pManager.setComboBoxModel(manager);				
+		pManager.setComboBoxModel(manager);	
 	}
 
 	private void setTitleModel() {
