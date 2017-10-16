@@ -48,11 +48,7 @@ public class EmployeeContent extends JPanel {
 		pDno = new ComboComponent<>("부서");
 		pDno.getCombo().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Department dept = pDno.getSelectedItem();
-				System.out.println(dept + "," + dept.getDeptNo());
-				List<Employee> lists = service.selectEmployeeByDno(dept);
-				Vector<Employee> manager = new Vector<>(lists);
-				pManager.setComboBoxModel(manager);	
+				setManagerByDno(service);	
 			}
 		});
 		add(pDno);
@@ -70,6 +66,18 @@ public class EmployeeContent extends JPanel {
 		setDepartModel();
 		setTitleModel();
 		setManagerModel();
+	}
+	
+	private void setManagerByDno(EmployeeService service) {
+		Department dept = pDno.getSelectedItem();
+		Employee ceo = new Employee(4377);
+		
+		List<Employee> lists = service.selectEmployeeByDno(dept);
+		if (!lists.contains(ceo)){
+			lists.add(service.selectEmployeeByNo(new Employee(4377)));
+		}
+		Vector<Employee> manager = new Vector<>(lists);
+		pManager.setComboBoxModel(manager);
 	}
 
 	private void setManagerModel() {
