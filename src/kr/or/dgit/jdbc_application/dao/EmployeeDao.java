@@ -109,7 +109,7 @@ public class EmployeeDao implements SqlDao<Employee> {
 			pstmt.setInt(1, item.getDeptNo());
 						
 			try (ResultSet rs = pstmt.executeQuery();) {
-				if (rs.next()) {
+				while (rs.next()) {
 					lists.add(getEmployee(rs));
 				}
 			}

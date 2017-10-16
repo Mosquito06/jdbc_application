@@ -17,6 +17,10 @@ import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.dto.Employee;
 import kr.or.dgit.jdbc_application.dto.Title;
 import kr.or.dgit.jdbc_application.service.EmployeeService;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class EmployeeContent extends JPanel {
@@ -42,6 +46,15 @@ public class EmployeeContent extends JPanel {
 		add(pEmpName);
 		
 		pDno = new ComboComponent<>("부서");
+		pDno.getCombo().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Department dept = pDno.getSelectedItem();
+				System.out.println(dept + "," + dept.getDeptNo());
+				List<Employee> lists = service.selectEmployeeByDno(dept);
+				Vector<Employee> manager = new Vector<>(lists);
+				pManager.setComboBoxModel(manager);	
+			}
+		});
 		add(pDno);
 				
 		pManager = new ComboComponent<>("관리자");
