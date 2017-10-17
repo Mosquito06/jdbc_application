@@ -1,20 +1,17 @@
 package kr.or.dgit.jdbc_application.view;
 
-import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import kr.or.dgit.jdbc_application.content.AbstractContent;
 import kr.or.dgit.jdbc_application.content.DepartmentContent;
+import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.list.AbstractList;
 import kr.or.dgit.jdbc_application.list.ListDepartment;
 import kr.or.dgit.jdbc_application.service.DepartmentService;
 
 public class ViewDepartment extends AbstractView {
 	private DepartmentService service;
-	
+		
 	public ViewDepartment(String title) {
 		super(title);
 	}
@@ -27,7 +24,7 @@ public class ViewDepartment extends AbstractView {
 	}
 
 	@Override
-	protected JPanel createContent() {
+	protected AbstractContent<Department> createContent() {
 		DepartmentContent pContent = new DepartmentContent();
 		return pContent;
 	}

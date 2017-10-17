@@ -23,7 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class EmployeeContent extends JPanel {
+public class EmployeeContent extends AbstractContent<Employee> {
 
 	private TextFieldComponent pEmpNo;
 	private TextFieldComponent pEmpName;
@@ -97,6 +97,8 @@ public class EmployeeContent extends JPanel {
 		Vector<Department> depart = new Vector<>(lists);
 		pDno.setComboBoxModel(depart);
 	}
+	
+	@Override
 	public Employee getContent(){
 		int empNo = Integer.parseInt(pEmpNo.getTextValue());
 		String empName = pEmpName.getTextValue();
@@ -107,6 +109,7 @@ public class EmployeeContent extends JPanel {
 		return new Employee(empNo, empName, title, manager, salary, dno);
 	}
 	
+	@Override
 	public void setContent(Employee employee){
 		pEmpNo.setTextValue(employee.getEmpNo()+"");
 		pEmpName.setTextValue(employee.getEmpName());
@@ -116,6 +119,7 @@ public class EmployeeContent extends JPanel {
 		pTitle.setSelectedItem(employee.getTitle());
 	}
 	
+	@Override
 	public void isEmptyCheck() throws Exception {
 		pEmpNo.isEmptyCheck();
 		pEmpName.isEmptyCheck();
@@ -123,5 +127,16 @@ public class EmployeeContent extends JPanel {
 		pManager.isEmptyCheck();
 		pSalary.isEmptyCheck();
 		pTitle.isEmptyCheck();
+	}
+
+	@Override
+	public void clear() {
+		pEmpNo.setTextValue("");
+		pEmpName.setTextValue("");
+		pDno.setSelectedIndex(0);
+		pManager.setSelectedIndex(0);
+		pSalary.setSpinValue(1500000);
+		pTitle.setSelectedIndex(0);
+		
 	}
 }
