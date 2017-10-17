@@ -13,6 +13,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.jdbc_application.content.AbstractContent;
+import kr.or.dgit.jdbc_application.dto.Employee;
 import kr.or.dgit.jdbc_application.list.AbstractList;
 
 @SuppressWarnings("serial")
@@ -139,7 +140,7 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 		if (e.getActionCommand().equals("수정")) {
 			// 1. 리스트에서 선택된 Item을 가져옴
 			Object item = pList.getSelectedItem();
-			
+						
 			// 2. 가져온 Item을 pContent에 setContent() 호출;
 			pContent.setContent(item);
 			
