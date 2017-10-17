@@ -35,4 +35,10 @@ public class ViewDepartment extends AbstractView {
 		
 	}
 
+	@Override
+	protected void insertContent(Object content) {
+		service.insertDepartment((Department)content);
+		
+	}
+
 }

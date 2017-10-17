@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -19,6 +20,7 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 	private JButton btnCancel;
 	protected AbstractContent<?> pContent;
 	protected AbstractList pList;
+	private JButton btnOk;
 
 	public AbstractView(String title) {
 		setTitle(title);
@@ -40,7 +42,8 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 		JPanel pBtn = new JPanel();
 		pNorth.add(pBtn, BorderLayout.SOUTH);
 		
-		JButton btnOk = new JButton("\uCD94\uAC00");
+		btnOk = new JButton("\uCD94\uAC00");
+		btnOk.addActionListener(this);
 		pBtn.add(btnOk);
 		
 		btnCancel = new JButton("\uCDE8\uC18C");
@@ -59,6 +62,9 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 	protected abstract AbstractContent<?> createContent();
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnOk) {
+			btnOkActionPerformed(e);
+		}
 		if (e.getSource() == btnCancel) {
 			btnCancelActionPerformed(e);
 		}
@@ -67,4 +73,28 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 	protected void btnCancelActionPerformed(ActionEvent e){
 		pContent.clear();
 	};
+	protected void btnOkActionPerformed(ActionEvent e) {
+		// 0. 공백 체크
+		try {
+			pContent.isEmptyCheck();
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage());
+			return;
+		}
+		
+		
+		// 1. pContent에서 입력된 내용(DTO)를 가져옴
+		Object content = pContent.getContent();
+		
+		// 2. 입력된 DTO를 service를 이용해서 DB에 insert
+		insertContent(content);
+		
+		// 3. pList에서 목록을 새로 load
+		pList.loadData();
+		
+		// 4. 추가 후 content 클리어
+		pContent.clear();
+	}
+
+	protected abstract void insertContent(Object content);
 }
