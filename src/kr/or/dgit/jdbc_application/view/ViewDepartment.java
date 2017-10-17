@@ -22,11 +22,11 @@ public class ViewDepartment extends AbstractView {
 		return pList;
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	protected AbstractContent<Department> createContent() {
-		pContent = new DepartmentContent();
-		return (AbstractContent<Department>) pContent;
+		AbstractContent<Department> pContent = new DepartmentContent();
+		return pContent;
 	}
 
 	@Override
@@ -38,6 +38,18 @@ public class ViewDepartment extends AbstractView {
 	@Override
 	protected void insertContent(Object content) {
 		service.insertDepartment((Department)content);
+		
+	}
+
+	@Override
+	protected void deleteContent(Object item) {
+		service.deleteDepartment((Department)item);
+		
+	}
+
+	@Override
+	protected void updateContent(Object item) {
+		service.updateDepartment((Department)item);
 		
 	}
 

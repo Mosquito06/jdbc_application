@@ -66,8 +66,9 @@ public class ListEmployee extends AbstractList {
 
 	@Override
 	public Object getSelectedItem() {
-
-		return null;
+		int seletedIndex = table.getSelectedRow();
+		int empNo = (int) table.getValueAt(seletedIndex, 0);
+		return service.selectEmployeeByNo(new Employee(empNo));
 	}
 
 }

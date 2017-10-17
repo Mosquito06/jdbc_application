@@ -42,6 +42,7 @@ public class EmployeeService {
 	public void DeleteEmployee(Employee employee){
 		try {
 			empDao.deleteItem(employee);
+			showMessage("삭제 완료");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

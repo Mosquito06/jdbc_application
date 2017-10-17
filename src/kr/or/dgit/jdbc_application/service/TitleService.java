@@ -34,6 +34,7 @@ public class TitleService {
 	public void DeleteTitle(Title title){
 		try {
 			titleDao.deleteItem(title);
+			showMessage("삭제 완료");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -23,10 +23,9 @@ public class ViewEmployee extends AbstractView {
 		return pList;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected AbstractContent<Employee> createContent() {
-		pContent = new EmployeeContent(service);
+		AbstractContent<Employee> pContent = new EmployeeContent(service);
 		return (AbstractContent<Employee>) pContent;
 	}
 
@@ -39,6 +38,18 @@ public class ViewEmployee extends AbstractView {
 	@Override
 	protected void insertContent(Object content) {
 		service.insertEmployee((Employee)content);
+		
+	}
+
+	@Override
+	protected void deleteContent(Object item) {
+		service.DeleteEmployee((Employee) item);
+		
+	}
+
+	@Override
+	protected void updateContent(Object item) {
+		service.updataEmployee((Employee)item);
 		
 	}
 

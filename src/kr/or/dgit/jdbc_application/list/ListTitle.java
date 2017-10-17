@@ -40,8 +40,9 @@ public class ListTitle extends AbstractList {
 
 	@Override
 	public Object getSelectedItem() {
-
-		return null;
+		int seletedIndex = table.getSelectedRow();
+		int titleNo = (int) table.getValueAt(seletedIndex, 0);
+		return service.selectTitleByNo(new Title(titleNo));
 	}
 
 }

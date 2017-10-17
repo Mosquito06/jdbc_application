@@ -1,13 +1,11 @@
 package kr.or.dgit.jdbc_application.list;
 
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.util.Vector;
 
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -27,7 +25,11 @@ public abstract class AbstractList extends JPanel {
 		// loadData();
 
 	}
-
+	
+	public void setPopupMenu(JPopupMenu menu){
+		table.setComponentPopupMenu(menu);
+	}
+	
 	public void loadData() {
 		DefaultTableModel model = new DefaultTableModel(getData(), getColumnNames());
 		table.setModel(model);

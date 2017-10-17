@@ -22,11 +22,10 @@ public class ViewTitle extends AbstractView {
 		return pList;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected AbstractContent<Title> createContent() {
-		pContent = new TitleContent();
-		return (AbstractContent<Title>) pContent;
+		AbstractContent<Title> pContent = new TitleContent();
+		return pContent;
 	}
 
 	@Override
@@ -38,6 +37,18 @@ public class ViewTitle extends AbstractView {
 	@Override
 	protected void insertContent(Object content) {
 		service.insertTitle((Title)content);
+	}
+
+	@Override
+	protected void deleteContent(Object item) {
+		service.DeleteTitle((Title)item);
+		
+	}
+
+	@Override
+	protected void updateContent(Object item) {
+		service.updataTitle((Title)item);
+		
 	}
 
 }
