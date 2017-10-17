@@ -53,4 +53,19 @@ public class ViewEmployee extends AbstractView {
 		
 	}
 
+	@Override
+	protected String setTitle() {
+		return "»ç¿ø";
+	}
+
+	@Override
+	protected Object selectContent(Object id) {
+		return service.selectEmployeeByNo((Employee)id);
+	}
+
+	@Override
+	protected Object createObject(int id) {
+		return new Employee(id);
+	}
+
 }

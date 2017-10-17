@@ -10,7 +10,7 @@ import kr.or.dgit.jdbc_application.service.DepartmentService;
 @SuppressWarnings("serial")
 public class ViewDepartment extends AbstractView {
 	private DepartmentService service;
-			
+	
 	public ViewDepartment(String title) {
 		super(title);
 	}
@@ -51,6 +51,21 @@ public class ViewDepartment extends AbstractView {
 	protected void updateContent(Object item) {
 		service.updateDepartment((Department)item);
 		
+	}
+
+	@Override
+	protected String setTitle() {
+		return "ºÎ¼­";
+	}
+
+	@Override
+	protected Object selectContent(Object id) {
+		return service.selecteDepartmentByNo((Department)id);
+	}
+
+	@Override
+	protected Object createObject(int id) {
+		return new Department(id);
 	}
 
 }

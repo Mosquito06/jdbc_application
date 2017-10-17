@@ -10,7 +10,7 @@ import kr.or.dgit.jdbc_application.service.TitleService;
 @SuppressWarnings("serial")
 public class ViewTitle extends AbstractView {
 	private TitleService service;
-			
+		
 	public ViewTitle(String title) {
 		super(title);
 	}
@@ -26,6 +26,7 @@ public class ViewTitle extends AbstractView {
 	protected AbstractContent<Title> createContent() {
 		AbstractContent<Title> pContent = new TitleContent();
 		return pContent;
+	
 	}
 
 	@Override
@@ -51,4 +52,19 @@ public class ViewTitle extends AbstractView {
 		
 	}
 
+	@Override
+	protected String setTitle() {
+		return "Á÷Ã¥";
+	}
+
+	@Override
+	protected Object selectContent(Object object) {
+		return service.selectTitleByNo((Title)object);
+	}
+
+	@Override
+	protected Object createObject(int id) {
+		return new Title(id);
+	}
+	
 }

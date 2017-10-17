@@ -139,4 +139,25 @@ public class EmployeeContent extends AbstractContent<Employee> {
 		pTitle.setSelectedIndex(0);
 		
 	}
+
+	@Override
+	public void contentEnable(boolean tf) {
+		if(tf == false){
+			pEmpNo.setEnable(false);
+			pEmpName.setEnable(false);
+			pDno.setEnable(false);
+			pManager.setEnable(false);
+			pSalary.setEnable(false);
+			pTitle.setEnable(false);
+		}else{
+			pEmpNo.setEnable(true);
+			pEmpName.setEnable(true);
+			pDno.setEnable(true);
+			pManager.setEnable(true);
+			pSalary.setEnable(true);
+			pTitle.setEnable(true);
+		}
+		
+		
+	}
 }

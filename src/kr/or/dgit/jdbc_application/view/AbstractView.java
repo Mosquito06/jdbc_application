@@ -23,6 +23,7 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 	protected AbstractContent pContent;
 	protected AbstractList pList;
 	private JButton btnOk;
+	protected String Title;
 
 	public AbstractView(String title) {
 		setTitle(title);
@@ -33,7 +34,8 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-
+		Title = setTitle();
+		
 		JPanel pNorth = new JPanel();
 		contentPane.add(pNorth, BorderLayout.NORTH);
 		pNorth.setLayout(new BorderLayout(0, 0));
@@ -107,8 +109,10 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 			if(e.getActionCommand().equals("확인")){
 				// 1. pContent 내용을 clear
 				pContent.clear();
+				
 				// 2. pContent 내용을 setEnable;
-				pContent.setEnabled(true);
+				pContent.contentEnable(true);
+				
 				// 3. btn 확인 -> 추가
 				btnOk.setText("추가");
 			}	
@@ -148,22 +152,36 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 		
 		if (e.getActionCommand().equals("검색")) {
 			// 1. 다이얼로그 상자를 띄워서 사원번호, 부서번호, 직책번호를 가져옴
-						
+			String Input = JOptionPane.showInputDialog(Title + "번호를 입력하세요.");			
+			int Id = 0;
+			
+			try{
+				Id = Integer.parseInt(Input);
+			}catch(NumberFormatException err){
+				JOptionPane.showMessageDialog(null, "숫자로만 입력하세요");
+				return;
+			}
+			
 			// 2. 해당하는 번호로 service에서 검색한 content를 가져옴
 			
+			Object item = selectContent(createObject(Id));
+			
+			
 			// 3. 검색된 content를 pContent.setContent()
-			
-			
+			try{
+				pContent.setContent(item);
+			}catch(NullPointerException err2){
+				JOptionPane.showMessageDialog(null, "존재하지 않는" + Title + "번호입니다.");
+			}
 			// 4. pContent setEnable(false);
-			pContent.setEnabled(false);
-			
+			pContent.contentEnable(false);
+						
 			// 5. btn -> "확인"
 			btnOk.setText("확인");
 		}
 
 	}
 
-	
 	protected void btnCancelActionPerformed(ActionEvent e) {
 		pContent.clear();
 	};
@@ -196,5 +214,11 @@ public abstract class AbstractView extends JFrame implements ActionListener {
 	protected abstract void deleteContent(Object item);
 	
 	protected abstract void updateContent(Object item);
+	
+	protected abstract Object selectContent(Object id);
+	
+	protected abstract Object createObject(int id);
+	
+	protected abstract String setTitle();
 
 }

@@ -13,7 +13,7 @@ public class DepartmentContent extends AbstractContent<Department> {
 	private TextFieldComponent pDeptNo;
 	private TextFieldComponent pDeptName;
 	private TextFieldComponent pFloor;
-
+	
 	public DepartmentContent() {
 		setLayout(new GridLayout(0, 1, 0, 10));
 
@@ -55,5 +55,20 @@ public class DepartmentContent extends AbstractContent<Department> {
 		pDeptName.setTextValue("");
 		pFloor.setTextValue("");
 
+	}
+
+	@Override
+	public void contentEnable(boolean tf) {
+		if(tf == false){
+			pDeptNo.setEnable(false);
+			pDeptName.setEnable(false);
+			pFloor.setEnable(false);
+		}else{
+			pDeptNo.setEnable(true);
+			pDeptName.setEnable(true);
+			pFloor.setEnable(true);
+		}
+		
+		
 	}
 }
