@@ -1,3 +1,4 @@
+package kr.or.dgit.jdbc_application.내작업;
 /*package kr.or.dgit.jdbc_application_내작업;
 
 import java.awt.BorderLayout;

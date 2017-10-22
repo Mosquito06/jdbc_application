@@ -1,3 +1,4 @@
+package kr.or.dgit.jdbc_application.dao.내작업;
 /*package kr.or.dgit.jdbc_application.dao_내작업;
 
 import java.sql.SQLException;
