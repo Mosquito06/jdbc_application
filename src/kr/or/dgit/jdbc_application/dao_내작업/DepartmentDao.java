@@ -1,4 +1,4 @@
-package kr.or.dgit.jdbc_application.dao_내작업;
+/*package kr.or.dgit.jdbc_application.dao_내작업;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -109,3 +109,4 @@ public class DepartmentDao implements SqlDao<Department> {
 	}
 
 }
+*/

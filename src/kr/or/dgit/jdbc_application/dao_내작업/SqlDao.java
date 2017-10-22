@@ -1,4 +1,4 @@
-package kr.or.dgit.jdbc_application.dao_내작업;
+/*package kr.or.dgit.jdbc_application.dao_내작업;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -10,3 +10,4 @@ public interface SqlDao<T> {
 	T selectItemByNo(T item) throws SQLException;
 	List<T> selectItemByAll() throws SQLException;
 }
+*/
